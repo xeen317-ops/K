@@ -81,6 +81,17 @@ nav .tabs button.on{background:var(--ink);color:var(--on-ink);border-color:var(-
 .tree .snips{margin:0 0 4px 44px;font-size:12px;color:var(--muted);cursor:pointer;line-height:1.45;word-break:break-all}
 .tree .snips b{font-weight:500;color:var(--lab-ink);margin-right:4px}
 .tree .snips .more{color:var(--hint)}
+/* 차례: 깊이 단추 · 작은 배지(장의 기능 · 시점 인물 · 컷 수 · 변화가 빈 곳) */
+.tree-tools{display:flex;gap:4px;margin-bottom:8px}
+.tree-tools button{flex:1 1 auto;padding:2px 4px;font-size:11.5px;color:var(--muted);background:var(--paper);white-space:nowrap}
+.tree-tools button:hover{color:var(--ink)}
+.tree-tools button.on{color:var(--ink);border-color:var(--rule);background:var(--field)}
+.tree-tools.off{opacity:.45;pointer-events:none}
+.tree .meta{font-size:10.5px;line-height:16px;padding:0 5px;border-radius:3px;background:var(--lab-bg);color:var(--lab-ink);flex:none;white-space:nowrap}
+.tree .meta.f-clash{background:color-mix(in srgb,var(--accent) 18%,var(--field));color:var(--accent)}
+.tree .meta.f-turn,.tree .meta.f-decide{background:color-mix(in srgb,var(--s-prop) 20%,var(--field));color:var(--s-prop)}
+.tree .meta.pov{background:transparent;color:var(--muted);padding:0 2px;max-width:6em;overflow:hidden;text-overflow:ellipsis}
+.tree .meta.warn{background:color-mix(in srgb,var(--s-fill) 22%,var(--field));color:color-mix(in srgb,var(--s-fill) 62%,var(--ink))}
 /* 확정 비율 막대 */
 .prog{flex:none;width:30px;height:4px;border-radius:2px;background:var(--track);overflow:hidden;display:inline-block}
 .prog i{display:block;height:100%;background:var(--s-fixed)}
@@ -123,6 +134,50 @@ main{overflow:auto;padding:20px 28px 80px}
 .children li .grip{color:var(--grip);flex:none;cursor:grab;font-size:13px}
 .children li .num{color:var(--rule);min-width:70px;font-size:13px}
 .children li .sum{color:var(--muted);font-size:13px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* 구조 설계: 앞뒤 넘기기 · 뼈대 칸 · 뼈대 표 · 흐름 카드 · 연속 추가 */
+.sibnav{display:inline-flex;gap:4px;margin-left:auto;align-self:center}
+.sibnav button{padding:2px 8px;font-family:var(--sans);font-size:12px;font-weight:400}
+.form .lab.spine{background:color-mix(in srgb,var(--rule) 12%,var(--lab-bg));color:var(--ink);font-weight:600;box-shadow:inset 3px 0 0 var(--rule)}
+.form .val.spine{background:color-mix(in srgb,var(--rule) 4%,var(--field))}
+.form .val.arc-empty{box-shadow:inset 3px 0 0 var(--s-fill)}
+.ch-head{display:flex;align-items:center;gap:10px;margin:0 0 10px;flex-wrap:wrap}
+.ch-head h3{margin:0;margin-right:auto}
+.quick-bar{display:flex;gap:6px;margin-top:10px;padding:8px;background:var(--lab-bg);border:1px dashed var(--rule-soft);border-radius:4px;align-items:center;flex-wrap:wrap}
+.quick-bar input[type=text]{flex:1;min-width:160px;padding:5px 8px;font-size:13px}
+.quick-bar input.q-title{flex:0 1 230px}
+.quick-bar select{width:auto;padding:5px 8px;font-size:12.5px}
+.quick-bar .q-tip{font-size:11.5px;color:var(--muted);width:100%;margin-top:2px}
+table.outline{width:100%;min-width:700px;border-collapse:collapse;table-layout:fixed;border-top:2px solid var(--rule);background:var(--field)}
+table.outline th{font-weight:500;font-size:12px;color:var(--lab-ink);background:var(--lab-bg);padding:6px 8px;text-align:left;border-bottom:1px solid var(--rule);border-right:1px solid var(--rule-faint)}
+table.outline td{vertical-align:top;padding:0;border-bottom:1px solid var(--rule-soft);border-right:1px solid var(--rule-faint)}
+table.outline th:last-child,table.outline td:last-child{border-right:0}
+table.outline td.o-num{padding:7px 6px;background:var(--cell);border-left:3px solid var(--rule);font-size:12.5px;line-height:1.5;color:var(--rule);font-weight:600;cursor:grab}
+table.outline tr:focus-within>td{background:color-mix(in srgb,var(--rule) 6%,var(--field))}
+table.outline td.o-num .grip{color:var(--grip);font-weight:400;margin-right:3px}
+table.outline td.o-num small{display:block;font-size:11px;font-weight:400;color:var(--muted)}
+.o-go{display:inline-block;padding:0;border:0;background:transparent;font-size:11px;font-weight:400;color:var(--muted);text-decoration:underline}
+.o-go:hover{background:transparent;color:var(--ink)}
+table.outline textarea{border:0;background:transparent;padding:6px 8px;min-height:44px;font-size:13px}
+table.outline td.o-st{padding:4px}
+table.outline select{border:0;background:transparent;padding:6px 4px;font-size:12.5px}
+.beat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
+.beat-card{min-width:0;background:var(--field);border:1px solid var(--rule-soft);border-top:3px solid var(--rule);border-radius:4px;padding:10px 12px;display:flex;flex-direction:column;gap:6px}
+.beat-card.arc-warn{border-top-color:var(--s-fill)}
+.beat-card.drop-before{box-shadow:inset 4px 0 0 var(--rule)}
+.beat-card.drop-after{box-shadow:inset -4px 0 0 var(--rule)}
+.beat-card .b-top{display:flex;align-items:center;gap:6px}
+.beat-card .b-num{font-size:12px;font-weight:600;color:var(--rule);cursor:grab;white-space:nowrap}
+.beat-card .b-num .grip{color:var(--grip);font-weight:400}
+.beat-card textarea.b-ttl{flex:1;min-width:0;font-family:var(--serif);font-weight:600;font-size:15px;border:0;border-bottom:1px dashed transparent;border-radius:0;background:transparent;padding:2px 4px;min-height:28px}
+.beat-card textarea.b-ttl:focus{border-bottom-color:var(--rule)}
+.beat-card .b-meta{display:grid;grid-template-columns:110px minmax(0,1fr);gap:6px;align-items:start;font-size:12px}
+.beat-card .b-meta select,.beat-card .b-meta textarea{padding:3px 6px;font-size:12px;min-height:28px;background:var(--cell);border:1px solid var(--rule-faint)}
+.beat-card .b-meta .hintbox{grid-column:1/-1}
+.beat-card .b-lbl{font-size:11px;color:var(--lab-ink);font-weight:600;margin-top:2px}
+.beat-card .b-miss{color:color-mix(in srgb,var(--s-fill) 62%,var(--ink));font-weight:400}
+.beat-card textarea.b-box{font-size:12.5px;min-height:44px;padding:4px 6px;background:var(--cell);border:1px solid var(--rule-faint)}
+.beat-card .b-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:6px;border-top:1px dashed var(--rule-faint);font-size:11.5px;color:var(--muted)}
+.beat-card .b-foot button{font-size:11.5px;padding:2px 8px}
 .cuts{margin-top:26px}
 table.cut{width:100%;border-collapse:collapse;table-layout:fixed;border-top:2px solid var(--rule)}
 table.cut th,table.thr th{font-weight:500;font-size:12px;color:var(--lab-ink);background:var(--lab-bg);padding:6px 8px;text-align:left;border-bottom:1px solid var(--rule);border-right:1px solid var(--rule-faint)}
@@ -359,11 +414,28 @@ tr.drop-after>td{box-shadow:inset 0 -3px 0 var(--rule)}
   .cpanel{top:0;z-index:85}
   .thrbox li{flex-wrap:wrap}
   .thrbox li .oth{max-width:100%;flex-basis:100%;margin:0 0 4px 60px}
+  table.outline{min-width:0;border-top:0;background:transparent}
+  table.outline,table.outline tbody,table.outline tr,table.outline td{display:block}
+  table.outline colgroup,table.outline thead{display:none}
+  table.outline tr{background:var(--field);border:1px solid var(--rule-soft);border-top:3px solid var(--rule);border-radius:4px;margin-bottom:10px;overflow:hidden}
+  table.outline td{border-right:0;border-bottom:1px solid var(--rule-faint)}
+  table.outline td:last-child{border-bottom:0}
+  table.outline td[data-th]::before{content:attr(data-th);display:block;font-size:11px;color:var(--lab-ink);padding:5px 8px 0}
+  table.outline td.o-num{border-left:0;display:flex;align-items:baseline;gap:8px}
+  table.outline td.o-num small{display:inline}
+  table.outline td.o-num .o-go{margin-left:auto;font-size:12px}
+  table.outline textarea{min-height:34px}
+  table.outline tr.drop-before>td,table.outline tr.drop-after>td{box-shadow:none}
+  table.outline tr.drop-before{box-shadow:0 -3px 0 var(--rule)}
+  table.outline tr.drop-after{box-shadow:0 3px 0 var(--rule)}
+  .quick-bar input.q-title{flex:1 1 100%}
+  .sibnav{margin-left:0}
 }
 @media (prefers-reduced-motion:reduce){.toast{transition:none} header .gh.busy .led{animation:none}}
 @media print{
   :root,:root[data-theme="dark"]{--paper:#fff;--ink:#000;--muted:#444;--rule:#3B7A5E;--rule-soft:rgba(59,122,94,.28);--rule-faint:rgba(59,122,94,.12);--field:#fff;--lab-bg:#EEF2EE;--lab-ink:#2E4A3C;--cell:#F7F9F6;color-scheme:light}
-  nav,header,.toolbar,.cutbar,.tree,td.num .ops,td.ops,.children,.ctx,.mpop,.hintbox,.cpanel,.notice,.atbtn,.hscroll,.aipanel{display:none!important}
+  nav,header,.toolbar,.cutbar,.tree,td.num .ops,td.ops,.children,.ctx,.mpop,.hintbox,.cpanel,.notice,.atbtn,.hscroll,.aipanel,.sibnav{display:none!important}
+  .form .val.arc-empty{box-shadow:none}
   .app{display:block}main{overflow:visible;padding:0}textarea{overflow:visible;border:0}body{background:#fff}
   .scenegrid.sp{display:block}.scenegrid.sp .shead{position:static;max-height:none;overflow:visible}
   .cutwrap{overflow:visible}.cutwrap table.cut{min-width:0}
@@ -374,7 +446,7 @@ tr.drop-after>td{box-shadow:inset 0 -3px 0 var(--rule)}
 <div class="app">
   <header>
     <h1>트리트먼트</h1>
-    <span class="sub">K (가제) · 양식 v5.2</span>
+    <span class="sub">K (가제) · 양식 v5.3</span>
     <span class="save" id="savestate">아직 저장 안 됨</span>
     <span class="gh" id="aistate" title="빠르게 채우기(AI) 설정 열기"><span class="led"></span><span class="txt">AI 미설정</span></span>
     <span class="gh" id="ghstate" title="깃허브 동기화 설정 열기"><span class="led"></span><span class="txt">깃허브 미설정</span></span>
@@ -401,6 +473,12 @@ tr.drop-after>td{box-shadow:inset 0 -3px 0 var(--rule)}
         <button id="flt-clear" hidden>지우기</button>
       </div>
       <div class="fsum" id="flt-sum"></div>
+    </div>
+    <div class="tree-tools" id="treetools">
+      <button type="button" data-depth="1" title="차례를 권까지만 펴 두기">권만</button>
+      <button type="button" data-depth="2" title="차례를 장까지 펴 두기">장까지</button>
+      <button type="button" data-depth="3" title="차례를 소단락까지 펴 두기">소단락까지</button>
+      <button type="button" data-depth="4" title="차례를 장면까지 모두 펴기">전체 펴기</button>
     </div>
     <div class="tree" id="tree"></div>
   </nav>
@@ -630,6 +708,16 @@ const THRCOLS = [
   ['memo','메모','어떻게 거둘지, 독자가 언제 눈치채면 좋은지']
 ];
 const PERSON_KEYS = new Set(['pov','cast','powers','deaths','stages']);
+/* 구조 설계: 뼈대 칸(이야기의 등뼈가 되는 칸, 이름표가 굵게 보임) · 변화 칸 · 한 줄 칸 · 표에 함께 보이는 칸 */
+const SPINE = {work:['logline','synopsis','theme','ending'], volume:['question','arc','events','deaths'], chapter:['function','summary','arc'], section:['summary','temperature'], scene:['event','why','change','hook']};
+const ARC_KEY = {volume:'arc', chapter:'arc', section:'temperature', scene:'change'};
+const SUM_KEY = {volume:'question', chapter:'summary', section:'summary', scene:'event'};
+const META_KEY = {chapter:'pov', section:'timeplace', scene:'place'};
+const FN_CLASS = {'전환':'f-turn', '대결':'f-clash', '결정':'f-decide'};
+const fdef = (type,key) => FIELDS[type].find(x=>x[0]===key);
+const flab = (type,key,full) => { const d=fdef(type,key); return d?(full?d[1]:d[1].split(' (')[0]):key; };
+const filled = v => !!String(v??'').trim();
+const arcMissing = n => { const ak=ARC_KEY[n.type]; return !!ak&&!filled(n[ak])&&(filled(n.title)||filled(n[SUM_KEY[n.type]])); };
 const NOTE = '본문 속 @{id}는 characters의 id를 가리키는 인물 연결입니다(앱에서는 @이름으로 보임). 각 항목의 u는 마지막 수정 시각, f는 칸별 수정 시각, fb는 f에 없는 칸의 기준 시각입니다. threads는 복선 목록이고 plant·pay는 심은 곳·거두는 곳의 항목 id입니다.';
 
 function blank(type){
@@ -647,7 +735,7 @@ let state = null;
 let sel = {kind:'tree', id:null, char:null};
 let saveTimer = null, dirty=false;
 let collapsed = new Set();
-let ui = {headClosed:false, split:'auto', charView:'cards', thrFilter:'all'};
+let ui = {headClosed:false, formClosed:false, split:'auto', charView:'cards', thrFilter:'all', childView:'outline', treeDepth:0};
 let flt = {q:'', status:'', char:''};
 
 /* 시각 기록: u = 그 항목을 마지막으로 고친 시각, f[칸] = 그 칸을 고친 시각, fb = f에 없는 칸의 기준 시각.
@@ -744,6 +832,13 @@ function walk(fn){
   rec(state.work,[],null);
 }
 function find(id){ let r=null; walk((n,p,par)=>{ if(n.id===id) r={node:n,path:p,parent:par}; }); return r; }
+/* 칸이 어느 항목의 것인가: 위쪽 칸(data-k)은 지금 고른 항목, 아래 구조 표·카드의 칸(data-inline-k)은 그 줄(data-cid)의 항목 */
+function fieldRef(t){
+  if(!t||!t.dataset) return null;
+  if(t.dataset.inlineK){ const row=t.closest('[data-cid]'); const f=row&&find(row.dataset.cid); return f?{f,node:f.node,key:t.dataset.inlineK,inline:true}:null; }
+  if(t.dataset.k){ const f=find(sel.id); return f?{f,node:f.node,key:t.dataset.k,inline:false}:null; }
+  return null;
+}
 function number(path){
   if(path.length===0) return '';
   const parts=[String(path[0]+1)];
@@ -824,6 +919,28 @@ function progressMap(){ // 항목마다 아래 항목 수(t)와 그중 [확정] 
   rec(state.work); return m;
 }
 function progBar(p){ if(!p||!p.t) return ''; const pct=Math.round(p.f/p.t*100); return `<span class="prog" title="아래 항목 ${p.t}개 중 확정 ${p.f}개 (${pct}%)"><i style="width:${pct}%"></i></span>`; }
+function treeMeta(n){ // 차례의 작은 배지: 장의 기능 · 시점 인물 · 컷 수 · 변화가 비어 있는 곳
+  if(n.type==='work') return ''; let h='';
+  const m=(txt,cls,tip)=>{ h+=`<span class="meta${cls?' '+cls:''}" title="${esc(tip)}">${esc(txt)}</span>`; };
+  if(n.type==='chapter'){ if(n.function) m(n.function,FN_CLASS[n.function]||'','장의 기능');
+    const pv=D(n.pov||'',false).replace(/\s*\(임시\)/g,'').split(/\r?\n/)[0].replace(/^@/,'').trim(); if(pv) m(pv,'pov','시점 인물: '+pv); }
+  if(n.type==='scene'&&n.cuts.length) m(n.cuts.length+'컷','','컷 수');
+  if(arcMissing(n)) m('변화∅','warn','‘'+flab(n.type,ARC_KEY[n.type],true)+'’ 칸이 비어 있습니다');
+  return h;
+}
+function refreshTreeRow(n){ // 글을 쓰는 동안: 차례에서 그 항목의 제목과 배지만 고친다(차례 전체를 다시 그리지 않음)
+  const row=document.querySelector(`.tree .node[data-id="${n.id}"]`); if(!row) return;
+  const tt=titleOf(n); const el=row.querySelector('.ttl'); if(el){ el.textContent=tt||'(제목 없음)'; el.classList.toggle('untitled',!tt); }
+  row.querySelectorAll('.meta').forEach(x=>x.remove()); const dot=row.querySelector('.dot'); if(dot) dot.insertAdjacentHTML('beforebegin',treeMeta(n));
+}
+function depthNow(){ // 지금 접힌 모양이 깊이 단추 가운데 어느 것과 같은가 (어느 것도 아니면 0)
+  let minC=9, maxO=-1;
+  walk((n,p)=>{ if(!LIST[n.type]) return; if(collapsed.has(n.id)) minC=Math.min(minC,p.length); else maxO=Math.max(maxO,p.length); });
+  const fits=d=>maxO<d&&d<=minC;
+  if(ui.treeDepth&&fits(ui.treeDepth)) return ui.treeDepth;
+  for(let d=4;d>=1;d--){ if(fits(d)) return d; }
+  return 0;
+}
 function renderTree(){
   const tree=$id('tree'); const prog=progressMap(); const on=fltOn();
   let hits=null, show=null, count=0;
@@ -837,13 +954,14 @@ function renderTree(){
     let h=`<li><div class="node${sel.kind==='tree'&&sel.id===node.id?' sel':''}${node.type==='work'?' work':''}${on&&!hit?' dim':''}" data-id="${node.id}"${node.type!=='work'&&!on?' data-drag="node"':''} title="${path.length?number(path):'작품'}">`+
       `<span class="tog${kids&&!on?'':' none'}" data-tog="${node.id}">${kids&&!on?(isC?'▸':'▾'):''}</span>`+
       `<span class="lab">${label(node,path)}</span>`+
-      `<span class="ttl${t?'':' untitled'}">${t?esc(t):'(제목 없음)'}</span>`+progBar(prog.get(node.id))+
+      `<span class="ttl${t?'':' untitled'}">${t?esc(t):'(제목 없음)'}</span>`+progBar(prog.get(node.id))+treeMeta(node)+
       `<span class="dot badge ${badgeClass(node.status)}" title="${node.status}"></span></div>`;
     if(hit&&hits.get(node.id).length){ const hs=hits.get(node.id); h+=`<div class="snips" data-id="${node.id}">`+hs.slice(0,3).map(s=>`<div><b>${esc(s[0])}</b>${s[1]}</div>`).join('')+(hs.length>3?`<div class="more">외 ${hs.length-3}곳</div>`:'')+`</div>`; }
     if(kids && !isC){ h+='<ul>'+kids.map((c,i)=>li(c,path.concat(i))).join('')+(on?'':`<li class="addrow"><button data-add="${node.id}">+ ${KIND[CHILD[node.type]]} 추가</button></li>`)+'</ul>'; }
     return h+'</li>';
   };
   tree.innerHTML='<ul>'+li(state.work,[])+'</ul>'+(on&&!count?'<div class="empty" style="margin:8px 0 0;padding:20px 10px">맞는 곳이 없습니다.</div>':'');
+  const tt=$id('treetools'); const dn=on?0:depthNow(); tt.classList.toggle('off',on); tt.querySelectorAll('button').forEach(b=>b.classList.toggle('on',+b.dataset.depth===dn));
   const sum=$id('flt-sum');
   if(!on){ sum.textContent=''; }
   else { const q=flt.q.trim().toLowerCase(); let ch=0, th=0;
@@ -868,10 +986,11 @@ function renderTabs(){
 /* ---------- 편집기 ---------- */
 function fieldRow(f,node){
   const [key,lab,kind,hint,opts]=f; const val=node[key]??''; const at=PERSON_KEYS.has(key);
+  const sp=SPINE[node.type].includes(key), miss=key===ARC_KEY[node.type]&&!filled(val);
   let input;
   if(kind==='select'){ input=`<select data-k="${key}">${opts.map(o=>`<option value="${esc(o)}"${o===val?' selected':''}>${o||'—'}</option>`).join('')}</select>`; }
   else { input=`<textarea data-k="${key}" rows="${kind||1}" placeholder="${esc(hint||'')}">${esc(D(val))}</textarea>`+(at?`<button type="button" class="atbtn" data-at="1" title="인물 넣기 (@)">＠</button>`:''); }
-  return `<div class="lab">${lab}</div><div class="val${at?' hasat':''}">${input}</div>`;
+  return `<div class="lab${sp?' spine':''}"${sp?' title="뼈대 칸 — 구조를 잡을 때 먼저 채우는 칸"':''}>${lab}</div><div class="val${at?' hasat':''}${sp?' spine':''}${miss?' arc-empty':''}">${input}</div>`;
 }
 function statusRow(node){
   return `<div class="lab">상태</div><div class="val"><span class="status"><select data-k="status" style="width:140px">${STATUS.map(s=>`<option value="${s[0]}"${node.status===s[0]?' selected':''}>${s[1]}</option>`).join('')}</select> <span class="badge ${badgeClass(node.status)}">${node.status}</span></span></div>`;
@@ -885,8 +1004,10 @@ const splitEff = () => ui.split==='on' ? window.innerWidth>=1100 : ui.split==='o
 let lastSplit=null;
 function headSummary(node){
   const one=s=>esc(D(s||'').split(/\r?\n/).map(x=>x.trim()).filter(Boolean).join(' / '));
-  const rows=[['장소',node.place],['시간',node.time],['등장 인물',node.cast],['사건',node.event],['판',node.field]].filter(r=>r[1]&&String(r[1]).trim());
-  return `<div class="headsum" role="button" tabindex="0" title="눌러서 머리 표 펴기">`+(rows.length?rows.map(r=>`<div><b>${r[0]}</b>${one(r[1])}</div>`).join(''):'')+`<div class="mut">머리 표 ${FIELDS.scene.length}칸이 접혀 있습니다. 누르면 펴집니다.</div></div>`;
+  const isScene=node.type==='scene'; const cut=x=>x.length>150?x.slice(0,150)+'…':x;
+  const rows=(isScene?[['장소',node.place],['시간',node.time],['등장 인물',node.cast],['사건',node.event],['판',node.field]]
+    :[META_KEY[node.type]].concat(SPINE[node.type]).filter(Boolean).map(k=>[flab(node.type,k),cut(D(node[k]||''))])).filter(r=>r[1]&&String(r[1]).trim());
+  return `<div class="headsum" role="button" tabindex="0" title="눌러서 ${isScene?'머리 표':'칸'} 펴기">`+(rows.length?rows.map(r=>`<div><b>${esc(r[0])}</b>${one(r[1])}</div>`).join(''):'')+`<div class="mut">${isScene?`머리 표 ${FIELDS.scene.length}칸이`:`이 ${KIND[node.type]}의 칸 ${FIELDS[node.type].length}개가`} 접혀 있습니다. 누르면 펴집니다.</div></div>`;
 }
 function cutsHtml(node){
   let h=`<div class="cuts"><h3>컷 표 (${node.cuts.length}컷)</h3>`;
@@ -918,16 +1039,20 @@ function renderEditor(){
   if(sel.kind==='threads'){ renderThreads(main); return; }
   if(!find(sel.id)) sel.id=state.work.id;
   const f=find(sel.id); const node=f.node, path=f.path;
-  const n=number(path); const t=titleOf(node); const pg=progressMap().get(node.id);
-  const isScene=node.type==='scene'; const closed=isScene&&!!ui.headClosed; const sp=isScene&&!closed&&splitEff(); if(isScene) lastSplit=splitEff();
+  const n=number(path); const t=titleOf(node); const prog=progressMap(); const pg=prog.get(node.id);
+  const isScene=node.type==='scene'; const fold=isScene?!!ui.headClosed:!!ui.formClosed;
+  const fq=flt.q.trim().toLowerCase(); const qhit=!!fq&&FIELDS[node.type].some(ff=>ff[2]!=='select'&&D(node[ff[0]]||'').toLowerCase().includes(fq));
+  const closed=fold&&!qhit&&FIELDS[node.type].some(ff=>filled(node[ff[0]]));   // 접어 두었어도, 아무것도 적지 않은 항목과 찾는 낱말이 이 칸들 안에 있는 항목은 펴서 보여 준다
+  const sp=isScene&&!closed&&splitEff(); if(isScene) lastSplit=splitEff();
   let h=`<div class="editor${sp?' wide':''}"><div class="crumb">${esc(crumbs(path))}</div>`;
-  h+=`<h2><span class="lab">${label(node,path)}</span><span>${t?esc(t):'(제목 없음)'}</span>${n?`<span class="ref">${n}</span>`:''}${pg&&pg.t?`<span class="ref">확정 ${pg.f}/${pg.t}</span>${progBar(pg)}`:''}</h2>`;
+  h+=`<h2><span class="lab">${label(node,path)}</span><span>${t?esc(t):'(제목 없음)'}</span>${n?`<span class="ref">${n}</span>`:''}${pg&&pg.t?`<span class="ref pgref">확정 ${pg.f}/${pg.t}</span>${progBar(pg)}`:''}${sibNav(node)}</h2>`;
   h+=`<div class="toolbar">`;
   if(node.type!=='work'){
     h+=`<button data-op="up">위로</button><button data-op="down">아래로</button><button data-op="del" class="danger">${KIND[node.type]} 삭제</button>`;
   }
   if(LIST[node.type]) h+=`<button data-op="addchild" class="primary">+ ${KIND[CHILD[node.type]]} 추가</button>`;
-  if(isScene) h+=`<button data-op="headtog">${closed?'머리 표 펴기':'머리 표 접기'}</button>`+(closed?'':`<button data-op="splittog" class="wideonly">${sp?'위아래로 보기':'좌우 2단으로 보기'}</button>`);
+  if(isScene) h+=`<button data-op="headtog">${fold?'머리 표 펴기':'머리 표 접기'}</button>`+(closed?'':`<button data-op="splittog" class="wideonly">${sp?'위아래로 보기':'좌우 2단으로 보기'}</button>`);
+  else h+=`<button data-op="formtog" title="${fold?'접어 둔 칸을 다시 폅니다':'이 화면의 칸을 요약 몇 줄로 접어, 아래 구조 표가 바로 보이게 합니다'}">${fold?'칸 펴기':'칸 접기'}</button>`;
   h+=`<span class="sp"></span>`;
   if(node.type==='work' && state.work.volumes.length===0) h+=`<button data-op="sample">예시 넣기 (당집의 밤)</button>`;
   h+=`</div>`;
@@ -935,20 +1060,88 @@ function renderEditor(){
   if(isScene){
     h+=`<div class="scenegrid${sp?' sp':''}"><div class="scol shead">`+(closed?headSummary(node):formHtml+thrBox(node))+`</div><div class="scol scuts">`+cutsHtml(node)+`</div></div>`;
   } else {
-    h+=formHtml;
-    if(node.type!=='work') h+=thrBox(node);
-    else if(state.threads.length){ const d=state.threads.filter(x=>x.done).length; h+=`<div class="thrbox"><h3>복선 <small>거둔 것 ${d} / 전체 ${state.threads.length}</small></h3><div class="cutbar"><button data-op="thr-open">복선 목록</button></div></div>`; }
-    const L=LIST[node.type]; const kids=node[L]; const prog=progressMap();
-    h+=`<div class="children"><h3>${KIND[CHILD[node.type]]} 차례 (${kids.length})</h3>`;
-    if(kids.length===0) h+=`<div class="empty">아직 ${KIND[CHILD[node.type]]}이 없습니다. 위의 "+ ${KIND[CHILD[node.type]]} 추가"를 누르세요.</div>`;
-    else h+='<ul>'+kids.map((c,i)=>{ const cp=path.concat(i); return `<li data-go="${c.id}" data-drag="node" data-id="${c.id}" title="${number(cp)}"><span class="grip">⋮⋮</span><span class="num">${label(c,cp)}</span><span>${esc(titleOf(c)||'(제목 없음)')}</span><span class="sum">${esc(D(c.summary||c.question||c.event||c.logline||''))}</span>${progBar(prog.get(c.id))}<span class="badge ${badgeClass(c.status)}">${c.status}</span></li>`; }).join('')+'</ul>';
-    h+=`</div>`;
+    if(closed) h+=headSummary(node);
+    else {
+      h+=formHtml;
+      if(node.type!=='work') h+=thrBox(node);
+      else if(state.threads.length){ const d=state.threads.filter(x=>x.done).length; h+=`<div class="thrbox"><h3>복선 <small>거둔 것 ${d} / 전체 ${state.threads.length}</small></h3><div class="cutbar"><button data-op="thr-open">복선 목록</button></div></div>`; }
+    }
+    h+=childrenHtml(node,path,prog);
   }
   h+=`</div>`;
   main.innerHTML=h;
   main.querySelectorAll('textarea').forEach(autosize);
 }
 function autosize(t){ t.style.height='auto'; t.style.height=(t.scrollHeight+2)+'px'; }
+
+/* ---------- 구조 설계: 앞뒤 넘기기 · 뼈대 표 · 흐름 카드 · 간단 목록 · 연속 추가 ---------- */
+function sibNav(node){ // 같은 단위의 앞뒤 항목으로. 권·장을 넘어서도 이어진다(1권의 마지막 장 → 2권의 첫 장)
+  if(node.type==='work') return ''; const all=[]; walk((n,p)=>{ if(n.type===node.type) all.push([n,p]); }); const i=all.findIndex(x=>x[0]===node);
+  const b=(j,dir,txt)=>{ const o=all[j]; return `<button type="button" data-dir="${dir}"${o?` data-go="${o[0].id}" title="${esc(pathLabel(o[1]))}"`:' disabled'}>${txt}</button>`; };
+  return `<span class="sibnav">${b(i-1,'prev','◀ 이전')}${b(i+1,'next','다음 ▶')}</span>`;
+}
+function childrenHtml(node,path,prog){ // 아래 항목들. 표·카드의 칸은 그 자리에서 바로 고친다(data-inline-k, 줄마다 data-cid)
+  const ctype=CHILD[node.type], kids=node[LIST[node.type]], K=KIND[ctype];
+  const mode=['outline','board','list'].includes(ui.childView)?ui.childView:'outline';
+  const ak=ARC_KEY[ctype], sk=SUM_KEY[ctype], mk=META_KEY[ctype];
+  const akLab=flab(ctype,ak,true), skLab=flab(ctype,sk,true), mkLab=mk?flab(ctype,mk):'';
+  const fnOpts=ctype==='chapter'?fdef('chapter','function')[4]:null;
+  const subOf=c=>LIST[ctype]?`${KIND[CHILD[ctype]]} ${c[LIST[ctype]].length}`:`컷 ${c.cuts.length}`;
+  const ta=(c,k,rows,ph,cls)=>`<textarea data-inline-k="${k}" rows="${rows}" placeholder="${esc(ph)}"${cls?` class="${cls}"`:''}>${esc(D(c[k]))}</textarea>`;
+  const fnSel=(c,lead)=>`<select data-inline-k="function" title="장의 기능">${fnOpts.map(o=>`<option value="${esc(o)}"${c.function===o?' selected':''}>${lead}${o||(lead?'미정':'—')}</option>`).join('')}</select>`;
+  let h=`<div class="children"><div class="ch-head"><h3>${K} 구조 설계 (${kids.length})</h3><span class="seg">`+
+    [['outline','뼈대 표'],['board','흐름 카드'],['list','간단 목록']].map(m=>`<button type="button" data-cview="${m[0]}"${mode===m[0]?' class="on"':''}>${m[1]}</button>`).join('')+`</span></div>`;
+  if(!kids.length) h+=`<div class="empty">아직 ${K}이 없습니다. 아래 칸에 제목을 적고 Enter를 누르면 바로 생깁니다.</div>`;
+  else if(mode==='list'){
+    h+='<ul>'+kids.map((c,i)=>{ const cp=path.concat(i); return `<li data-go="${c.id}" data-drag="node" data-id="${c.id}" title="${number(cp)}"><span class="grip">⋮⋮</span><span class="num">${label(c,cp)}</span><span>${esc(titleOf(c)||'(제목 없음)')}</span><span class="sum">${esc(D(c[sk]||''))}</span>${progBar(prog.get(c.id))}<span class="badge ${badgeClass(c.status)}">${c.status}</span></li>`; }).join('')+'</ul>';
+  }
+  else if(mode==='outline'){
+    h+=`<div class="xscroll"><table class="outline"><colgroup><col style="width:78px"><col style="width:15%">${fnOpts?'<col style="width:78px">':''}${mk?'<col style="width:13%">':''}<col><col><col style="width:82px"></colgroup>`+
+      `<thead><tr><th>${K}</th><th>제목</th>${fnOpts?'<th>기능</th>':''}${mk?`<th>${esc(mkLab)}</th>`:''}<th>${esc(skLab)}</th><th>${esc(akLab)}</th><th>상태</th></tr></thead><tbody>`;
+    kids.forEach((c,i)=>{ const cp=path.concat(i);
+      h+=`<tr data-cid="${c.id}"><td class="o-num" data-drag="node" data-id="${c.id}" title="끌어서 순서 바꾸기 · ${number(cp)}"><span class="grip">⋮⋮</span>${label(c,cp)}<small>${subOf(c)}</small><button type="button" class="o-go" data-go="${c.id}" title="${esc(pathLabel(cp))} 열기">열기 →</button></td>`+
+        `<td data-th="제목">${ta(c,'title',1,'제목')}</td>`+
+        (fnOpts?`<td data-th="기능">${fnSel(c,'')}</td>`:'')+
+        (mk?`<td data-th="${esc(mkLab)}">${ta(c,mk,1,mkLab)}</td>`:'')+
+        `<td data-th="${esc(skLab)}">${ta(c,sk,2,skLab)}</td><td data-th="${esc(akLab)}">${ta(c,ak,2,akLab)}</td>`+
+        `<td class="o-st" data-th="상태"><select data-inline-k="status" title="상태">${STATUS.map(x=>`<option value="${x[0]}"${c.status===x[0]?' selected':''}>${x[1]}</option>`).join('')}</select></td></tr>`; });
+    h+=`</tbody></table></div>`;
+  }
+  else {
+    h+=`<div class="beat-grid">`+kids.map((c,i)=>{ const cp=path.concat(i); const miss=!filled(c[ak]);
+      return `<div class="beat-card${miss?' arc-warn':''}" data-cid="${c.id}">`+
+        `<div class="b-top"><span class="b-num" data-drag="node" data-id="${c.id}" title="끌어서 순서 바꾸기 · ${number(cp)}"><span class="grip">⋮⋮</span> ${label(c,cp)}</span>${ta(c,'title',1,'(제목 없음)','b-ttl')}<span class="badge ${badgeClass(c.status)}">${c.status}</span></div>`+
+        (fnOpts?`<div class="b-meta">${fnSel(c,'기능: ')}${ta(c,'pov',1,'시점 (@인물)')}</div>`:'')+
+        `<div class="b-lbl">${esc(skLab)}</div>${ta(c,sk,2,skLab,'b-box')}`+
+        `<div class="b-lbl">${esc(akLab)} <span class="b-miss"${miss?'':' hidden'}>(비어 있음)</span></div>${ta(c,ak,2,akLab,'b-box')}`+
+        `<div class="b-foot"><span>${subOf(c)}</span><button type="button" data-go="${c.id}" title="${esc(pathLabel(cp))} 열기">상세 열기 →</button></div></div>`; }).join('')+`</div>`;
+  }
+  h+=`<div class="quick-bar" data-parent="${node.id}">`+
+    `<input type="text" class="q-title" data-q="title" placeholder="+ 새 ${K} 제목 (Enter로 연속 추가)" autocomplete="off">`+
+    (fnOpts?`<select data-q="function" title="장의 기능">${fnOpts.map(o=>`<option value="${esc(o)}">${o||'기능'}</option>`).join('')}</select>`:'')+
+    `<input type="text" data-q="sum" placeholder="${esc(skLab)} (없어도 됨)" autocomplete="off">`+
+    `<button type="button" data-op="quick-add" class="primary">+ 연속 추가</button>`+
+    `<span class="q-tip">Enter: ${K} 추가(화면은 그대로, 커서도 이 자리에)`+(mode==='list'?'':` · 표·카드 안에서 Ctrl+Enter: 바로 아래에 새 ${K} · Alt+↑↓: 위아래 ${K}의 같은 칸 · 오른쪽 버튼: 빠르게 채우기`)+`</span></div>`;
+  return h+`</div>`;
+}
+function refreshHeadProg(){ // 아래 항목의 상태를 표에서 바꿨을 때: 제목 줄의 "확정 n/m"과 막대
+  const pg=progressMap().get(sel.id); const el=document.querySelector('.editor h2 .pgref'); if(!pg||!el) return;
+  el.textContent=`확정 ${pg.f}/${pg.t}`; const bar=document.querySelector('.editor h2 .prog'); if(bar) bar.outerHTML=progBar(pg);
+}
+function quickAdd(bar){ // 연속 추가: 화면을 옮기지 않고 아래 항목을 하나 만든다. 제목도 한 줄도 비어 있으면 만들지 않는다
+  const f=bar&&find(bar.dataset.parent); const ctype=f&&CHILD[f.node.type]; if(!ctype) return;
+  const v=q=>{ const el=bar.querySelector(`[data-q="${q}"]`); return el?el.value.trim():''; };
+  const title=v('title'), sum=v('sum'), fn=v('function');
+  if(!title&&!sum){ const el=bar.querySelector('[data-q="title"]'); if(el) el.focus(); toast('제목이나 한 줄을 적고 Enter를 눌러 주세요'); return; }
+  const c=blank(ctype); if(title) c.title=E(title); if(sum) c[SUM_KEY[ctype]]=E(sum); if(fn) c.function=fn;
+  f.node[LIST[f.node.type]].push(c); touchOrd(f.node,'#kids'); collapsed.delete(f.node.id); saveCollapsed(); touch(); render();
+  const el=document.querySelector('#main .quick-bar [data-q="title"]'); if(el){ el.focus(); el.scrollIntoView({block:'nearest'}); }
+}
+function insertKidAfter(id){ // 표·카드 안에서 Ctrl+Enter: 그 줄 바로 아래에 같은 단위의 빈 항목
+  const f=find(id); if(!f||!f.parent) return; const arr=f.parent[LIST[f.parent.type]]; const c=blank(f.node.type);
+  arr.splice(arr.indexOf(f.node)+1,0,c); touchOrd(f.parent,'#kids'); touch(); render();
+  const ta=document.querySelector(`#main [data-cid="${c.id}"] [data-inline-k="title"]`); if(ta){ ta.focus(); ta.scrollIntoView({block:'nearest'}); }
+}
 
 /* ---------- 인물: 카드 · 표 · 상세 패널 ---------- */
 const CHAR_LAYOUT=[
@@ -1033,6 +1226,7 @@ function refreshDisplayedText(){ // 인물 이름이 바뀐 뒤: 화면에 떠 �
   document.querySelectorAll('#main textarea').forEach(t=>{
     if(t===document.activeElement) return; let item=null,key=null;
     if(t.dataset.k){ const f=find(sel.id); item=f&&f.node; key=t.dataset.k; }
+    else if(t.dataset.inlineK){ const r=fieldRef(t); item=r&&r.node; key=t.dataset.inlineK; }
     else if(t.dataset.ck){ const f=find(sel.id); const tr=t.closest('tr'); item=f&&tr&&f.node.cuts&&f.node.cuts.find(c=>c.id===tr.dataset.cut); key=t.dataset.ck; }
     else if(t.dataset.hk){ if(t.dataset.hk==='name') return; const r=t.closest('[data-char]'); item=r&&charById(r.dataset.char); key=t.dataset.hk; }
     else if(t.dataset.tk){ const r=t.closest('[data-thr]'); item=r&&state.threads.find(x=>x.id===r.dataset.thr); key=t.dataset.tk; }
@@ -1086,6 +1280,7 @@ function importPlantText(){ // 권·장의 '심는 것 · 거두는 것' 칸에 
 }
 
 /* ---------- 조작 ---------- */
+function unfold(){ const f=find(sel.id); if(f&&f.node.type!=='scene') ui.formClosed=false; else ui.headClosed=false; saveUi(); renderEditor(); markHits(); AI.mark(); }   // 접힌 요약을 눌러 펴기
 function moveIn(arr,i,dir){ const j=i+dir; if(j<0||j>=arr.length) return false; [arr[i],arr[j]]=[arr[j],arr[i]]; return true; }
 function addChild(parentId){
   const f=find(parentId); if(!f) return; const p=f.node; const t=CHILD[p.type]; if(!t) return;
@@ -1093,6 +1288,12 @@ function addChild(parentId){
   const ta=document.querySelector('main textarea[data-k="title"]'); if(ta) ta.focus();
 }
 function insertCutAfter(node,i){ const nc=blankCut(); node.cuts.splice(i+1,0,nc); touchOrd(node,'#cuts'); touch(); render(); const ta=document.querySelector(`tr[data-cut="${nc.id}"] textarea[data-ck="picture"]`); if(ta){ ta.focus(); ta.scrollIntoView({block:'nearest'}); } }
+$id('treetools').addEventListener('click',e=>{ // 차례를 그 깊이까지만 펴 둔다
+  const b=e.target.closest('button[data-depth]'); if(!b) return; const d=+b.dataset.depth;
+  collapsed.clear(); walk((n,p)=>{ if(p.length>=d&&LIST[n.type]) collapsed.add(n.id); });
+  ui.treeDepth=d; saveCollapsed(); saveUi(); renderTree();
+  const cur=document.querySelector('.tree .node.sel'); if(cur) cur.scrollIntoView({block:'nearest'});
+});
 $id('tree').addEventListener('click',e=>{
   const tog=e.target.closest('[data-tog]'); if(tog&&!tog.classList.contains('none')){ const id=tog.dataset.tog; if(collapsed.has(id)) collapsed.delete(id); else collapsed.add(id); saveCollapsed(); renderTree(); e.stopPropagation(); return; }
   const add=e.target.closest('[data-add]'); if(add){ sel.kind='tree'; addChild(add.dataset.add); return; }
@@ -1101,8 +1302,12 @@ $id('tree').addEventListener('click',e=>{
 });
 $id('main').addEventListener('click',e=>{
   const t=e.target; const b=t.closest('button');
-  if(t.closest('.headsum')){ ui.headClosed=false; saveUi(); renderEditor(); markHits(); return; }
-  const go=t.closest('[data-go]'); if(go){ select(go.dataset.go); return; }
+  if(t.closest('.headsum')){ unfold(); return; }
+  const go=t.closest('[data-go]');
+  if(go){ const dir=go.dataset.dir, fromKids=!!go.closest('.children'); select(go.dataset.go);
+    if(fromKids) $id('main').scrollTop=0;                                                      // 아래 구조 표에서 열었으면 그 항목의 맨 위부터
+    if(dir){ const nb=document.querySelector(`#main .sibnav [data-dir="${dir}"]`); if(nb&&!nb.disabled) nb.focus(); }   // ◀ ▶를 이어서 누를 수 있게
+    return; }
   const tg=t.closest('[data-tabgo]'); if(tg){ sel.kind=tg.dataset.tabgo; render(); return; }
   if(b&&b.dataset.at){ Mention.open(b.parentElement.querySelector('textarea')); return; }
   if(b&&b.dataset.pop){ panelOp(b.dataset.pop); return; }
@@ -1111,6 +1316,7 @@ $id('main').addEventListener('click',e=>{
   if(!b) return;
   if(b.dataset.cv){ ui.charView=b.dataset.cv; saveUi(); render(); return; }
   if(b.dataset.thrf){ ui.thrFilter=b.dataset.thrf; saveUi(); render(); return; }
+  if(b.dataset.cview){ ui.childView=b.dataset.cview; saveUi(); renderEditor(); markHits(); AI.mark(); return; }
   if(b.dataset.thrx){
     const li=b.closest('[data-thr]'); const th=li&&state.threads.find(x=>x.id===li.dataset.thr); if(!th) return;
     setField(th,b.dataset.thrx==='plant'?'plant':'pay','');
@@ -1130,9 +1336,11 @@ $id('main').addEventListener('click',e=>{
     if(op==='thr-add'){ const th=blankThread(); state.threads.push(th); state.ord.threads=nowIso(); if(ui.thrFilter==='done') ui.thrFilter='all'; touch(); render(); const ta=document.querySelector(`#main tr[data-thr="${th.id}"] textarea`); if(ta) ta.focus(); return; }
     if(op==='thr-import'){ const n=importPlantText(); if(n){ touch(); render(); } toast(n?`복선 ${n}개를 가져왔습니다`:'새로 가져올 것이 없습니다'); return; }
     if(op==='thr-open'){ sel.kind='threads'; render(); return; }
+    if(op==='quick-add'){ quickAdd(b.closest('.quick-bar')); return; }
     if(op==='sample'){ if(confirm('예시 데이터를 넣습니다. 1권 아래에 예시 장면 하나와 인물 둘이 들어갑니다.')){ loadSample(); touch(); render(); } return; }
     const f=find(sel.id); if(!f) return; const node=f.node, par=f.parent, path=f.path;
-    if(op==='headtog'){ ui.headClosed=!ui.headClosed; saveUi(); renderEditor(); markHits(); return; }
+    if(op==='headtog'){ ui.headClosed=!ui.headClosed; saveUi(); renderEditor(); markHits(); AI.mark(); return; }
+    if(op==='formtog'){ ui.formClosed=!ui.formClosed; saveUi(); renderEditor(); markHits(); AI.mark(); return; }
     if(op==='splittog'){ ui.split=splitEff()?'off':'on'; saveUi(); renderEditor(); markHits(); return; }
     if(op==='thr-plant'){ const th=blankThread(); th.plant=node.id; state.threads.push(th); state.ord.threads=nowIso(); touch(); render(); const ta=document.querySelector(`#main li[data-thr="${th.id}"] textarea`); if(ta) ta.focus(); return; }
     if(op==='addchild'){ addChild(node.id); return; }
@@ -1164,6 +1372,15 @@ $id('main').addEventListener('input',e=>{
     const f=find(sel.id); if(!f) return; const k=t.dataset.k; setField(f.node,k,isSel?t.value:E(t.value)); touch();
     if(k==='title'){ const tt=titleOf(f.node); const el=document.querySelector(`.tree .node[data-id="${sel.id}"] .ttl`); if(el){ el.textContent=tt||'(제목 없음)'; el.classList.toggle('untitled',!tt); } const h2s=document.querySelector('.editor h2 > span:nth-child(2)'); if(h2s) h2s.textContent=tt||'(제목 없음)'; }
     if(k==='status'){ const bd=t.parentElement.querySelector('.badge'); if(bd){ bd.className='badge '+badgeClass(t.value); bd.textContent=t.value; } renderTree(); }
+    else refreshTreeRow(f.node);
+    if(k===ARC_KEY[f.node.type]){ const v=t.closest('.val'); if(v) v.classList.toggle('arc-empty',!filled(t.value)); }
+  }
+  else if(t.dataset.inlineK){ // 아래 구조 표·카드의 칸: 그 줄의 항목을 고친다
+    const r=fieldRef(t); if(!r) return; const c=r.node, k=r.key, row=t.closest('[data-cid]');
+    setField(c,k,isSel?t.value:E(t.value)); touch();
+    if(k==='status'){ const bd=row.querySelector('.badge'); if(bd){ bd.className='badge '+badgeClass(c.status); bd.textContent=c.status; } renderTree(); refreshHeadProg(); }
+    else refreshTreeRow(c);
+    if(k===ARC_KEY[c.type]&&row.classList.contains('beat-card')){ const miss=!filled(t.value); row.classList.toggle('arc-warn',miss); const m=row.querySelector('.b-miss'); if(m) m.hidden=!miss; }
   }
   else if(t.dataset.ck){ const tr=t.closest('tr'); const f=find(sel.id); const cut=f&&tr&&f.node.cuts.find(c=>c.id===tr.dataset.cut); if(cut){ setField(cut,t.dataset.ck,E(t.value)); touch(); } }
   else if(t.dataset.hk){
@@ -1203,7 +1420,13 @@ $id('main').addEventListener('keydown',e=>{
     if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){ e.preventDefault(); const tr=t.closest('tr'); const f=find(sel.id); if(!f||!tr) return; const i=f.node.cuts.findIndex(c=>c.id===tr.dataset.cut); if(i>=0) insertCutAfter(f.node,i); return; }
     if(e.altKey&&(e.key==='ArrowDown'||e.key==='ArrowUp')){ e.preventDefault(); const tr=t.closest('tr'); const o=e.key==='ArrowDown'?tr.nextElementSibling:tr.previousElementSibling; const ta=o&&o.querySelector(`textarea[data-ck="${t.dataset.ck}"]`); if(ta) ta.focus(); return; }
   }
-  if(e.key==='Enter'&&t.classList&&t.classList.contains('headsum')){ ui.headClosed=false; saveUi(); renderEditor(); }
+  if(t.matches&&t.matches('[data-inline-k]')){
+    const row=t.closest('[data-cid]');
+    if((e.ctrlKey||e.metaKey)&&e.key==='Enter'&&!e.isComposing){ e.preventDefault(); if(row) insertKidAfter(row.dataset.cid); return; }
+    if(e.altKey&&t.tagName==='TEXTAREA'&&(e.key==='ArrowDown'||e.key==='ArrowUp')){ e.preventDefault(); const o=row&&(e.key==='ArrowDown'?row.nextElementSibling:row.previousElementSibling); const el=o&&o.querySelector(`[data-inline-k="${t.dataset.inlineK}"]`); if(el) el.focus(); return; }
+  }
+  if(e.key==='Enter'&&!e.isComposing&&t.matches&&t.matches('.quick-bar input')){ e.preventDefault(); quickAdd(t.closest('.quick-bar')); return; }
+  if(e.key==='Enter'&&t.classList&&t.classList.contains('headsum')){ unfold(); }
 });
 $id('tab-tree').addEventListener('click',()=>{ sel.kind='tree'; if(!sel.id||!find(sel.id)) sel.id=state.work.id; render(); });
 $id('tab-chars').addEventListener('click',()=>{ sel.kind='chars'; render(); });
@@ -1227,6 +1450,8 @@ window.addEventListener('keydown',e=>{
     if(sel.kind==='chars'&&sel.char&&!typing){ sel.char=null; render(); }
   }
 });
+let rzT=null;
+window.addEventListener('resize',()=>{ clearTimeout(rzT); rzT=setTimeout(()=>document.querySelectorAll('#main textarea').forEach(autosize),150); });   // 칸의 너비가 바뀌면 높이를 다시 맞춘다(글이 잘려 보이지 않게)
 window.addEventListener('resize',()=>{
   if(sel.kind!=='tree') return; const f=find(sel.id); if(!f||f.node.type!=='scene'||ui.headClosed) return;
   if(splitEff()===lastSplit) return; const a=document.activeElement; if(a&&a.closest&&a.closest('main')&&/^(TEXTAREA|SELECT|INPUT)$/.test(a.tagName)) return;
@@ -1249,7 +1474,7 @@ const Drag=(()=>{
     if(e.target.closest('textarea,select,input,button,.tog')) return;
     const el=e.target.closest('[data-drag]'); if(!el) return;
     const kind=el.dataset.drag;
-    st={el,kind,id:el.dataset.id,x0:e.clientX,y0:e.clientY,pid:e.pointerId,touch:e.pointerType!=='mouse',active:false,timer:0,target:null,row:ROWSEL[kind]?el.closest(ROWSEL[kind]):null};
+    st={el,kind,id:el.dataset.id,x0:e.clientX,y0:e.clientY,pid:e.pointerId,touch:e.pointerType!=='mouse',active:false,timer:0,target:null,row:ROWSEL[kind]?el.closest(ROWSEL[kind]):(kind==='node'?el.closest('[data-cid]'):null)};
     if(st.touch) st.timer=setTimeout(()=>{ if(st&&!st.active) begin(st.x0,st.y0); },HOLD);
   }
   function ghostText(){
@@ -1288,9 +1513,9 @@ const Drag=(()=>{
     const under=document.elementFromPoint(x,y); if(!under) return;
     if(st.kind==='node'){
       const src=find(st.id); if(!src) return; const type=src.node.type;
-      const el=under.closest('[data-drag="node"]'); if(!el) return;
-      const f=find(el.dataset.id); if(!f) return;
-      if(f.node.type===type){ if(f.node.id===st.id) return; const b=el.getBoundingClientRect(); const after=y>b.top+b.height/2; st.target={mode:after?'after':'before',id:f.node.id}; el.classList.add(after?'drop-after':'drop-before'); return; }
+      const el0=under.closest('[data-drag="node"],[data-cid]'); const el=el0&&(el0.closest('[data-cid]')||el0); if(!el) return;   // 구조 표의 줄 · 카드는 어느 칸 위에 놓아도 된다
+      const f=find(el.dataset.cid||el.dataset.id); if(!f) return;
+      if(f.node.type===type){ if(f.node.id===st.id) return; const b=el.getBoundingClientRect(); const after=el.classList.contains('beat-card')?(x>b.left+b.width/2):(y>b.top+b.height/2); st.target={mode:after?'after':'before',id:f.node.id}; el.classList.add(after?'drop-after':'drop-before'); return; }
       if(CHILD[f.node.type]===type){ st.target={mode:'into',id:f.node.id}; el.classList.add('drop-into'); }
       return;
     }
@@ -1323,9 +1548,9 @@ const Drag=(()=>{
 /* ---------- 오른쪽 버튼 메뉴: 인물 넣기 · 빠르게 채우기(내장 재료 / AI 모티브 합성) · 도움말 보기 ---------- */
 let ctxTarget=null, ctxOpenedAt=0;
 const ctx=$id('ctx');
-function isField(el){ return el && (el.matches('textarea[data-k],select[data-k],textarea[data-ck],textarea[data-hk],select[data-hk],textarea[data-tk]')); }
+function isField(el){ return el && (el.matches('textarea[data-k],select[data-k],textarea[data-inline-k],select[data-inline-k],textarea[data-ck],textarea[data-hk],select[data-hk],textarea[data-tk]')); }
 function openMenu(x,y,t){
-  ctxTarget=t; const k=t.dataset.k||t.dataset.hk||t.dataset.ck||t.dataset.tk;
+  ctxTarget=t; const k=t.dataset.k||t.dataset.inlineK||t.dataset.hk||t.dataset.ck||t.dataset.tk;
   const isText=t.tagName==='TEXTAREA';
   const mention=isText&&t.dataset.hk!=='name', fillOk=k!=='status', aiOk=isText&&fillOk;   // 고르는 칸(select)은 내장 재료만
   ctx.querySelector('[data-m="mention"]').style.display = mention ? 'block' : 'none';
@@ -1355,7 +1580,7 @@ ctx.addEventListener('click',e=>{
     t.value=v; t.dispatchEvent(new Event('input',{bubbles:true})); t.focus(); }
 });
 function hintFor(t){
-  if(t.dataset.k){ if(t.dataset.k==='status') return STATUS_HINT; const f=find(sel.id); const node=f?f.node:state.work; const d=FIELDS[node.type].find(x=>x[0]===t.dataset.k); return d?d[3]:''; }
+  if(t.dataset.k||t.dataset.inlineK){ const r=fieldRef(t); const k=r?r.key:t.dataset.k; if(k==='status') return STATUS_HINT; const d=fdef(r?r.node.type:'work',k); return d?d[3]:''; }
   if(t.dataset.ck){ const c=CUTCOLS.find(x=>x[0]===t.dataset.ck); return c?c[2]:''; }
   if(t.dataset.hk){ if(t.dataset.hk==='status') return STATUS_HINT; const c=CHARCOLS.find(x=>x[0]===t.dataset.hk); return c?c[2]:''; }
   if(t.dataset.tk){ const c=THRCOLS.find(x=>x[0]===t.dataset.tk); return c?c[2]:''; }
@@ -1363,7 +1588,7 @@ function hintFor(t){
 }
 function showHint(t){
   const cell=t.parentElement; cell.querySelectorAll('.hintbox').forEach(x=>x.remove());
-  const box=document.createElement('div'); box.className='hintbox'; box.textContent=hintFor(t); cell.appendChild(box);
+  const box=document.createElement('div'); box.className='hintbox'; box.textContent=hintFor(t); if(t.dataset.inlineK) t.after(box); else cell.appendChild(box);
   const kill=()=>{ box.remove(); t.removeEventListener('input',kill); };
   t.addEventListener('input',kill); t.focus();
 }
@@ -1371,7 +1596,7 @@ function showHint(t){
 /* ---------- @ 인물 고르기 ---------- */
 const Mention=(()=>{
   const pop=$id('mpop'); let ta=null, start=-1, items=[], idx=0, manual=false;
-  const eligible=t=>!!(t&&t.tagName==='TEXTAREA'&&t.dataset&&(t.dataset.k||t.dataset.ck||t.dataset.tk||(t.dataset.hk&&t.dataset.hk!=='name')));
+  const eligible=t=>!!(t&&t.tagName==='TEXTAREA'&&t.dataset&&(t.dataset.k||t.dataset.inlineK||t.dataset.ck||t.dataset.tk||(t.dataset.hk&&t.dataset.hk!=='name')));
   function close(){ pop.hidden=true; ta=null; start=-1; manual=false; }
   function draw(){ pop.innerHTML=items.map((c,i)=>`<button type="button" data-i="${i}"${i===idx?' class="on"':''}><b>${esc(String(c.name).trim())}</b><small>${esc([c.team,c.side,c.property].filter(x=>x&&String(x).trim()).join(' · '))}</small></button>`).join(''); }
   function show(t,q,byHand){
@@ -1579,7 +1804,7 @@ function quickFillBase(t){
       case 'calling': return `${rdate()} 밤, ${pick(P.place)}`;
       case 'secret': return pick(P.secret);
     } return null; }
-  const k=t.dataset.k; if(!k) return null; const f=find(sel.id); const node=f?f.node:state.work; const type=node.type;
+  const r=fieldRef(t); if(!r) return null; const k=r.key; const type=r.node.type;   // 위쪽 칸이든 구조 표·카드의 칸이든 그 칸의 항목
   switch(k){
     case 'title': return rtitle(type);
     case 'genre': return '어반 판타지 · 청소년(만 14~18세 주인공)';
@@ -2054,7 +2279,7 @@ const AI=(()=>{
   /* --- 1단계: 채울 칸과 맥락 --- */
   function targetOf(t){
     if(!t||!t.dataset) return null;
-    if(t.dataset.k){ const f=find(sel.id); return f?{kind:'node',id:f.node.id,key:t.dataset.k}:null; }
+    if(t.dataset.k||t.dataset.inlineK){ const r=fieldRef(t); return r?{kind:'node',id:r.node.id,key:r.key}:null; }   // 위쪽 칸이든 아래 구조 표·카드의 칸이든 그 칸의 항목
     if(t.dataset.ck){ const tr=t.closest('tr[data-cut]'); const f=find(sel.id); return (tr&&f)?{kind:'cut',id:tr.dataset.cut,scene:f.node.id,key:t.dataset.ck}:null; }
     if(t.dataset.hk){ const r=t.closest('[data-char]'); return r?{kind:'char',id:r.dataset.char,key:t.dataset.hk}:null; }
     if(t.dataset.tk){ const r=t.closest('[data-thr]'); return r?{kind:'thr',id:r.dataset.thr,key:t.dataset.tk}:null; }
@@ -2314,7 +2539,7 @@ ${AREA[areaOf(r)]}`,
 
   /* --- 4단계: 미리 보기 창 --- */
   function elFor(tg){ if(!tg) return null; const q=s=>document.querySelector('#main '+s);
-    if(tg.kind==='node') return (sel.kind==='tree'&&sel.id===tg.id)?q(`textarea[data-k="${tg.key}"]`):null;
+    if(tg.kind==='node') return sel.kind!=='tree'?null:((sel.id===tg.id?q(`textarea[data-k="${tg.key}"]`):null)||q(`[data-cid="${tg.id}"] textarea[data-inline-k="${tg.key}"]`));
     if(tg.kind==='cut') return q(`tr[data-cut="${tg.id}"] textarea[data-ck="${tg.key}"]`);
     if(tg.kind==='char') return q(`[data-char="${tg.id}"] textarea[data-hk="${tg.key}"]`);
     return q(`tr[data-thr="${tg.id}"] textarea[data-tk="${tg.key}"]`); }
@@ -2462,12 +2687,19 @@ const HELP=`<div class="help"><h2>이 앱을 쓰는 법</h2>
 <ul><li>복선 하나가 한 줄입니다. 무엇을 심는지 적고, <strong>심은 곳</strong>과 <strong>거두는 곳</strong>을 차례에서 고르고, 거뒀으면 체크합니다. “안 거둔 것”만 볼 수 있습니다.</li>
 <li>권·장·소단락·장면 화면 아래의 <strong>복선</strong> 칸에서 “+ 여기서 심는 복선”을 누르면 그 자리에서 심은 것으로 들어가고, “여기서 거두는 복선 고르기”로 앞에서 심은 것을 이 자리에 겁니다.</li>
 <li>권·장의 ‘심는 것 · 거두는 것’ 칸에 글로 적어 둔 것은 복선 탭의 <strong>권·장에 적힌 것 가져오기</strong>로 한 줄씩 목록에 옮겨집니다(원래 글은 그대로 남습니다).</li></ul>
+<h3>구조 설계 — 뼈대 표 · 흐름 카드</h3>
+<ul><li>작품·권·장·소단락 화면 아래에 그 아래 항목들이 <strong>뼈대 표</strong>로 놓입니다. 제목 · 한 줄 요약 · 변화(시작 → 끝) · 상태를 <strong>표 안에서 바로</strong> 고칩니다. 장은 기능과 시점 인물, 소단락은 시간 · 장소, 장면은 장소가 함께 보입니다. <strong>흐름 카드</strong>는 같은 내용을 카드로 늘어놓은 것이고, <strong>간단 목록</strong>은 예전의 한 줄 목록입니다. 고른 보기는 기억됩니다.</li>
+<li>표 아래 <strong>연속 추가</strong> 칸에 제목을 적고 Enter를 누르면, 화면을 옮기지 않고 항목이 하나 생기고 커서는 그 칸에 남습니다. 장 열 개의 제목부터 줄줄이 세울 때 씁니다. 표·카드 안에서 <strong>Ctrl+Enter</strong>는 그 줄 바로 아래에 새 줄, <strong>Alt+↑ ↓</strong>는 위아래 줄의 같은 칸으로 갑니다. 줄 왼쪽의 ⋮⋮ 칸을 끌어 순서를 바꾸고, <strong>열기 →</strong>로 그 항목에 들어갑니다.</li>
+<li>표와 카드의 칸에서도 <code>@</code> 인물 고르기와 오른쪽 버튼 메뉴(인물 넣기 · 빠르게 채우기 · 도움말 보기)가 그대로 됩니다.</li>
+<li>이름표가 굵고 초록 띠가 붙은 칸은 <strong>뼈대 칸</strong>입니다. 권은 질문 · 시작→끝 · 주요 사건 · 죽음, 장은 기능 · 한 줄 요약 · 시작→끝, 소단락은 요약 · 감정의 온도, 장면은 사건 · 이유 · 변화 · 넘기는 것. 구조를 잡을 때 이 칸부터 채웁니다. <strong>변화 칸</strong>이 비어 있으면 그 칸 왼쪽에 노란 띠가 서고, 차례에는 <code>변화∅</code>가 붙습니다.</li>
+<li>제목 줄 오른쪽의 <strong>◀ 이전 · 다음 ▶</strong>은 같은 단위의 앞뒤 항목으로 넘어갑니다(1권의 마지막 장 다음은 2권의 첫 장). <strong>칸 접기</strong>를 누르면 그 화면의 칸이 요약 몇 줄로 접히고 구조 표가 바로 위로 올라옵니다. 접어 둔 채 ◀ ▶로 넘기면서 장마다 소단락을 세울 수 있습니다. 아직 아무것도 적지 않은 항목은 접지 않고 펴서 보여 줍니다.</li>
+<li>차례 위의 <strong>권만 · 장까지 · 소단락까지 · 전체 펴기</strong>는 차례를 그 깊이까지만 펴 둡니다. 차례의 장 옆에는 기능과 시점 인물이, 장면 옆에는 컷 수가 작게 보입니다.</li></ul>
 <h3>장면과 컷</h3>
 <ul><li>장면은 머리 표(조건)와 컷 표(그림)로 이루어집니다. <strong>머리 표 접기</strong>를 누르면 장소·시간·등장 인물·사건만 남기고 접혀서 컷 표가 바로 보입니다. 넓은 화면에서는 머리 표가 왼쪽, 컷 표가 오른쪽에 나란히 놓이고(<strong>좌우 2단으로 보기</strong>), 컷을 내려가도 머리 표가 옆에 붙어 있습니다.</li>
 <li>컷 하나에 보이는 것 하나, 움직임 하나, 대사 한두 마디. 그림 칸은 카메라 위치와 거리를 먼저 씁니다. 보이지 않는 것은 비고로 보냅니다.</li>
 <li>컷 칸에서 <strong>Ctrl+Enter</strong>를 누르면 바로 아래에 새 컷이 생기고 커서가 그리로 갑니다. <strong>Alt+↑ ↓</strong>는 위아래 컷의 같은 칸으로 옮겨 갑니다.</li></ul>
 <h3>끌어서 옮기기</h3>
-<ul><li>차례의 권·장·소단락·장면, 편집 화면의 차례 목록, 컷 표의 번호 칸, 인물 카드의 ⋮⋮, 복선 표의 손잡이를 끌어 순서를 바꿉니다. 끌어다 놓을 자리에 초록 선이 보입니다.</li>
+<ul><li>차례의 권·장·소단락·장면, 편집 화면 아래 구조 표·카드의 ⋮⋮, 컷 표의 번호 칸, 인물 카드의 ⋮⋮, 복선 표의 손잡이를 끌어 순서를 바꿉니다. 끌어다 놓을 자리에 초록 선이 보입니다.</li>
 <li>장을 다른 권으로, 장면을 다른 소단락으로 옮길 수도 있습니다. 터치 화면에서는 길게 누른 뒤 끕니다.</li></ul>
 <h3>오른쪽 버튼 메뉴</h3>
 <ul><li>어느 칸이든 마우스 오른쪽 버튼을 누르면 <strong>인물 넣기</strong>, <strong>빠르게 채우기</strong>, <strong>도움말 보기</strong>가 뜹니다(터치 화면에서는 칸을 길게 누릅니다). <strong>도움말 보기</strong>는 그 칸에 무엇을 적는지 칸 아래에 보여 줍니다.</li></ul>
@@ -2490,7 +2722,7 @@ const HELP=`<div class="help"><h2>이 앱을 쓰는 법</h2>
 <h3>상태</h3>
 <ul><li>[확정] 작가가 정한 것 · (제안) 아직 열린 안 · [미정] 비어 있음 · (채움) AI가 대신 채운 칸. 작가가 쓴 칸은 AI가 바꾸지 않습니다(빠르게 채우기도 작가가 넣기를 눌러야 들어갑니다).</li></ul>
 <h3>단축키</h3>
-<ul><li>Ctrl+S 저장(자동으로도 됩니다) · 컷 칸에서 Ctrl+Enter 새 컷, Alt+↑↓ 위아래 컷 · @ 인물 고르기 · Esc 메뉴, 빠르게 채우기 창, 인물 패널 닫기.</li></ul>
+<ul><li>Ctrl+S 저장(자동으로도 됩니다) · 컷 칸에서 Ctrl+Enter 새 컷, Alt+↑↓ 위아래 컷 · 구조 표에서 Ctrl+Enter 새 줄, Alt+↑↓ 위아래 줄 · 연속 추가 칸에서 Enter · @ 인물 고르기 · Esc 메뉴, 빠르게 채우기 창, 인물 패널 닫기.</li></ul>
 <p><button onclick="document.getElementById('tab-tree').click()">차례로 돌아가기</button></p></div>`;
 
 /* ---------- 시작 ---------- */
